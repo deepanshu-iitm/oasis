@@ -178,7 +178,3 @@ Oasis deliberately focuses on one dependable end-to-end path.
 - The AI director is optional; the deterministic fallback keeps planning usable offline.
 - Screenshot references are stored in the plan for future visual scene support.
 - Authentication, billing, multi-tenancy, voiceover generation, and multiple render engines are intentionally out of scope for the hackathon build.
-
-## License
-
-MIT
