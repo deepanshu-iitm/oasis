@@ -39,6 +39,7 @@ export const DirectorReel = ({
   }
 
   const activeBeat = beats[activeIndex] ?? beats[0];
+  const beatNumber = activeIndex + 1;
   const localFrame = frame - elapsedFrames;
   const beatDuration = beatFrames[activeIndex] ?? fps;
   const opacity = interpolate(
@@ -89,7 +90,7 @@ export const DirectorReel = ({
         }}
       >
         <div style={{ color: accentColor, fontSize: 34, fontWeight: 700, letterSpacing: 6 }}>
-          {String(activeIndex + 1).padStart(2, "0")}
+          {beatNumber < 10 ? `0${beatNumber}` : beatNumber}
         </div>
         <div style={{ fontSize: 112, fontWeight: 800, lineHeight: 1.04, marginTop: 32, textAlign: "center" }}>
           {activeBeat.caption_heading}
