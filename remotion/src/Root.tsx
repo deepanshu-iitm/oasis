@@ -1,5 +1,16 @@
-import type { FC } from "react";
+import { Composition } from "remotion";
 
-export const RemotionRoot: FC = () => {
-  return null;
+import { DirectorReel } from "./DirectorReel";
+
+export const RemotionRoot = () => {
+  return (
+    <Composition
+      id="DirectorReel"
+      component={DirectorReel}
+      durationInFrames={600}
+      fps={30}
+      height={1920}
+      width={1080}
+    />
+  );
 };
