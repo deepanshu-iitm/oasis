@@ -31,6 +31,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Optional screenshot path; repeat for up to two screenshots.",
     )
     parser.add_argument(
+        "--ai",
+        action="store_true",
+        help="Use OpenAI to create the production plan.",
+    )
+    parser.add_argument(
         "--no-render",
         action="store_true",
         help="Create plan.json and storyboard.md without rendering final.mp4.",
@@ -45,6 +50,7 @@ def main() -> None:
         args.out,
         duration_sec=args.duration_sec,
         screenshot_paths=args.screenshot,
+        use_ai=args.ai,
         render=not args.no_render,
         on_step=lambda step: print(f"[director] {step}"),
     )
