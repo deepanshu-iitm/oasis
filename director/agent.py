@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
+from director.render import render_video
 from director.schema import Brand, VideoPlan
 from director.tools.critique_plan import critique_plan
 from director.tools.map_assets import map_assets
@@ -22,6 +23,7 @@ class DirectorResult:
     critique: dict[str, object]
     plan_path: Path
     storyboard_path: Path
+    final_video_path: Path | None
 
 
 def run_director(
@@ -30,9 +32,10 @@ def run_director(
     *,
     duration_sec: int = 20,
     screenshot_paths: list[str] | None = None,
+    render: bool = True,
     on_step: Callable[[str], None] | None = None,
 ) -> DirectorResult:
-    """Create and save a deterministic video plan from a product brief."""
+    """Create plan artifacts and optionally render a video from a product brief."""
     if on_step:
         on_step("parse_brief")
     parsed = parse_brief(brief)
@@ -60,4 +63,11 @@ def run_director(
     if on_step:
         on_step("write_outputs")
     plan_path, storyboard_path = write_outputs(plan, out_dir)
-    return DirectorResult(plan, critique, plan_path, storyboard_path)
+
+    final_video_path = None
+    if render:
+        if on_step:
+            on_step("render_video")
+        final_video_path = render_video(plan, out_dir)
+
+    return DirectorResult(plan, critique, plan_path, storyboard_path, final_video_path)

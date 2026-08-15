@@ -16,7 +16,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--out",
         default="out/demo",
-        help="Directory for plan.json and storyboard.md (default: out/demo).",
+        help="Directory for plan.json, storyboard.md, and final.mp4 (default: out/demo).",
     )
     parser.add_argument(
         "--duration-sec",
@@ -30,6 +30,11 @@ def build_parser() -> argparse.ArgumentParser:
         default=[],
         help="Optional screenshot path; repeat for up to two screenshots.",
     )
+    parser.add_argument(
+        "--no-render",
+        action="store_true",
+        help="Create plan.json and storyboard.md without rendering final.mp4.",
+    )
     return parser
 
 
@@ -40,10 +45,13 @@ def main() -> None:
         args.out,
         duration_sec=args.duration_sec,
         screenshot_paths=args.screenshot,
+        render=not args.no_render,
         on_step=lambda step: print(f"[director] {step}"),
     )
     print(f"[director] Wrote {result.plan_path}")
     print(f"[director] Wrote {result.storyboard_path}")
+    if result.final_video_path:
+        print(f"[director] Wrote {result.final_video_path}")
     if not result.critique["ok"]:
         print(f"[director] Plan needs review: {result.critique['issues']}")
 
