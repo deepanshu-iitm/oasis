@@ -35,12 +35,12 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
-    print("[director] Parsing brief, planning beats, mapping assets, and critiquing plan...")
     result = run_director(
         args.brief,
         args.out,
         duration_sec=args.duration_sec,
         screenshot_paths=args.screenshot,
+        on_step=lambda step: print(f"[director] {step}"),
     )
     print(f"[director] Wrote {result.plan_path}")
     print(f"[director] Wrote {result.storyboard_path}")
