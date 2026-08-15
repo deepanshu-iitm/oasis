@@ -1,0 +1,22 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node / Remotion
+node_modules/
+remotion/node_modules/
+remotion/build/
+
+# Generated video output
+out/
+*.mp4
+
+# Local planning document (not part of the public repository)
+HELP.md
