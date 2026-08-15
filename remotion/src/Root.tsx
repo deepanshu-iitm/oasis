@@ -20,6 +20,12 @@ export const RemotionRoot = () => {
       id="DirectorReel"
       component={DirectorReel}
       defaultProps={defaultProps}
+      calculateMetadata={({ props }) => ({
+        durationInFrames: Math.max(
+          1,
+          Math.round(props.beats.reduce((total, beat) => total + beat.duration_sec, 0) * 30),
+        ),
+      })}
       durationInFrames={600}
       fps={30}
       height={1920}
