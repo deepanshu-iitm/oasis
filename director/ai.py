@@ -72,7 +72,7 @@ PLAN_SCHEMA: dict[str, Any] = {
                     "caption_desc": {"type": "string"},
                     "visual": {"type": "string"},
                     "duration_sec": {"type": "number"},
-                    "asset_refs": {"type": "array", "items": {"type": "string"}},
+                    "asset_refs": {"type": "array", "maxItems": 0, "items": {"type": "string"}},
                 },
             },
         },
@@ -91,6 +91,7 @@ Rules:
 - Use only kinetic_hook, kinetic_point, and outro_cta scene types.
 - Beat durations must add up exactly to duration_sec.
 - Use a safe #RRGGBB accent color. If no website is given, use https://example.com as cta_url.
+- Set asset_refs to an empty array for every beat. Only the local asset mapper may attach real screenshot paths.
 - Do not invent customer metrics, testimonials, partnerships, or named companies.
 - Return only the requested JSON object.
 """

@@ -26,6 +26,6 @@ def map_assets(beats: list[Beat], screenshot_paths: list[str] | None = None) -> 
             mapped_beats.append(replace(beat, asset_refs=[asset_paths[asset_index]]))
             asset_index += 1
         else:
-            mapped_beats.append(beat)
+            mapped_beats.append(replace(beat, asset_refs=[]))
 
     return mapped_beats
