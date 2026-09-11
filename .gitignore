@@ -1,6 +1,4 @@
 # Local configuration and secrets
-.env
-.env.*
 !.env.example
 
 # Python
@@ -18,5 +16,4 @@ remotion/build/
 out/
 *.mp4
 
-# Local planning document (not part of the public repository)
-HELP.md
+config.bat
