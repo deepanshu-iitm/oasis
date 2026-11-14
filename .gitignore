@@ -16,4 +16,7 @@ remotion/build/
 out/
 *.mp4
 
-config.bat
+
+.env
+.env.*
+.vscode/
